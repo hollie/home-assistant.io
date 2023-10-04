@@ -7,6 +7,10 @@ ha_release: 0.38
 ha_iot_class: Local Push
 ha_quality_scale: internal
 ha_domain: alert
+ha_codeowners:
+  - '@home-assistant/core'
+  - '@frenck'
+ha_integration_type: integration
 ---
 
 The `alert` integration is designed to notify you when problematic issues arise.
@@ -100,7 +104,7 @@ done_message:
   type: template
 notifiers:
   description: "List of `notification` integrations to use for alerts."
-  required: true
+  required: false
   type: list
 data:
   description: "Dictionary of extra parameters to send to the notifier."
@@ -121,7 +125,7 @@ you specify a `target` parameter when sending the notification), you can use the
 `group` notification to wrap them for an alert.
 Simply create a `group` notification type with a single notification member
 (such as `twilio_sms`) specifying the required parameters other than `message`
-provided by the `alert` component:
+provided by the `alert` integration:
 
 ```yaml
 - platform: group
@@ -158,17 +162,16 @@ conjunction with a `Template Binary Sensor`. The following example does that.
 {% raw %}
 
 ```yaml
-binary_sensor:
-  - platform: template
-    sensors:
-      motion_battery_low:
-        value_template: "{{ state_attr('sensor.motion', 'battery') < 15 }}"
-        friendly_name: "Motion battery is low"
+template:
+  - binary_sensor:
+      - name: "Motion Battery is Low"
+        state: "{{ state_attr('sensor.motion', 'battery') | float(default=0) < 15 }}"
+        device_class: battery
 
 alert:
   motion_battery:
     name: Motion Battery is Low
-    entity_id: binary_sensor.motion_battery_low
+    entity_id: binary_sensor.motion_battery_is_low
     repeat: 30
     notifiers:
       - ryans_phone
@@ -243,7 +246,7 @@ alert:
 
 The resulting message could be `Plant Officeplant needs help (moisture low)`.
 
-### Additional parameters for notifiers 
+### Additional parameters for notifiers
 
 Some notifiers support more parameters (e.g., to set text color or action
   buttons). These can be supplied via the `data` parameter:
@@ -269,6 +272,7 @@ alert:
     notifiers:
       - frank_telegram
 ```
+
 This particular example relies on the `inline_keyboard` functionality of
 Telegram, where the user is presented with buttons to execute certain actions.
 
@@ -286,6 +290,25 @@ but you will still receive the done message.
     - service: alert.turn_off
       target:
         entity_id: alert.garage_door
+```
+
+Notifications sent to Home Assistant Companion apps support [replacing](https://companion.home-assistant.io/docs/notifications/notifications-basic/#replacing) and [clearing](https://companion.home-assistant.io/docs/notifications/notifications-basic/#replacing) notifications. To use these functions with alerts, set a `tag` in the message data, send `clear_notification` as the `done_message`, and use `mobile_app_*` as the notifier:
+
+```yaml
+alert:
+  garage_door:
+    name: Garage is open
+    done_message: clear_notification
+    entity_id: input_boolean.garage_door
+    state: "on"
+    repeat: 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - mobile_app_ryan
+      - mobile_app_kristen
+    data:
+      tag: garage-door
 ```
 
 [template]: /docs/configuration/templating/

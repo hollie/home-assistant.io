@@ -7,25 +7,29 @@ ha_release: pre 0.7
 ha_iot_class: Local Push
 ha_quality_scale: internal
 ha_domain: browser
+ha_integration_type: integration
 ---
 
 The `browser` integration provides a service to open URLs in the default browser on the host machine.
 
 ## Configuration
 
-To load this component, add the following lines to your `configuration.yaml`:
+To load this integration, add the following lines to your `configuration.yaml`:
 
 ```yaml
 # Example configuration.yaml entry
 browser:
 ```
 
-#### Service `browser/browse_url`
+### Services
+
+Once loaded, the `browser` platform will expose services that can be called to perform various actions.
+
+Available services: `browser/browse_url`.
 
 | Service data attribute | Optional | Description |
 | ---------------------- | -------- | ----------- |
 | `url`                  |       no | The URL to open.
-
 
 ### Usage
 

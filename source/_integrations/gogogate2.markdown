@@ -9,15 +9,22 @@ ha_iot_class: Local Polling
 ha_domain: gogogate2
 ha_codeowners:
   - '@vangorra'
-  - '@bdraco'
 ha_config_flow: true
 ha_homekit: true
 ha_platforms:
   - cover
   - sensor
 ha_dhcp: true
+ha_integration_type: integration
 ---
 
 The `gogogate2` cover platform lets you control Gogogate2 and iSmartGate enabled garage doors and gates through Home Assistant. Device names in Home Assistant are generated based on the names defined in the GogoGate2 or iSmartGate mobile app.
 
 {% include integrations/config_flow.md %}
+
+### Supported Devices
+
+- Gogogate 2
+- ismartgate PRO
+- ismartgate LITE
+- ismartgate MINI

@@ -8,9 +8,11 @@ ha_iot_class: Local Polling
 ha_config_flow: true
 ha_codeowners:
   - '@gabe565'
+  - '@lanrat'
 ha_domain: ruckus_unleashed
 ha_platforms:
   - device_tracker
+ha_integration_type: hub
 ---
 
 This platform allows you to connect to a [Ruckus Unleashed](https://support.ruckuswireless.com/product_families/19-ruckus-unleashed) access point.
@@ -21,7 +23,7 @@ There is currently support for the following device types within Home Assistant:
 
 ## Configuration
 
-To add a Ruckus Unleashed device to your installation, go to **Configuration** -> **Integrations**, click the `+` button, then select **Ruckus** from the list of integrations.
+To add a Ruckus Unleashed device to your installation, go to **Settings** -> **Devices & Services**, click the `+` button, then select **Ruckus** from the list of integrations.
 
 It is required to configure the IP address of your **master access point**. See the section Access Points on the management web interface. And perhaps consider to set a preferred master (Admin & Services>System>System Info>Preferred master).
 

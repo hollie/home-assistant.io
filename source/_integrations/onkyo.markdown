@@ -8,6 +8,7 @@ ha_iot_class: Local Polling
 ha_domain: onkyo
 ha_platforms:
   - media_player
+ha_integration_type: integration
 ---
 
 The `onkyo` platform allows you to control a [Onkyo](https://www.onkyo.com), [Integra](http://www.integrahometheater.com)
@@ -40,7 +41,7 @@ name:
   required: false
   type: string
 max_volume:
-  description: Maximum volume as a percentage. Often the maximum volume of the receiver is far too loud. Setting this will set Home Assistant's 100% volume to be this setting on the amp. i.e., if you set this to 50% when you set Home Assistant to be 100% then your receiver will be set to 50% of it's maximum volume.
+  description: Maximum volume as a percentage. Often the maximum volume of the receiver is far too loud. Setting this will set Home Assistant's 100% volume to be this setting on the amp. i.e., if you set this to 50% when you set Home Assistant to be 100% then your receiver will be set to 50% of its maximum volume.
   required: false
   default: 100
   type: integer
@@ -89,6 +90,8 @@ If your source is not listed above, and you want to figure out how to format tha
 ```bash
 onkyo --host 192.168.0.100 source=query
 ```
+
+If this returns multiple, comma-separated values, use the first one. For example, if `dvd,bd,dvd` is returned, use `dvd`.
 
 To find your receivers max volume use the onkyo-eiscp Python module set the receiver to its maximum volume
 (don't do this whilst playing something!) and run:
@@ -145,7 +148,7 @@ script:
     alias: "Hdmi out projector"
     sequence:
       - service: media_player.onkyo_select_hdmi_output
-        service_data:
+        data:
           entity_id: media_player.onkyo
           hdmi_output: out-sub
 ```

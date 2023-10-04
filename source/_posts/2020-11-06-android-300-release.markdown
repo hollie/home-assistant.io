@@ -9,9 +9,9 @@ categories: Release-Notes
 og_image: /images/blog/2020-11-06-android-300-release/Companion.png
 ---
 
-Hey everyone its been a little while since we last spoke. We have a brand new Home Assistant Companion for Android release that we are excited to get into your hands and will roll out over the next day or so in the Google Play store.
+Hey everyone it's been a little while since we last spoke. We have a brand new Home Assistant Companion for Android release that we are excited to get into your hands and will roll out over the next day or so in the Google Play store.
 
-Before we get into the release details I'd like to mention that this month marks the [1 year anniversary](https://youtu.be/tc17q1Zn0Xs?t=3487) of the Home Assistant Companion app being offered in the Google Play Store! Just to think how far along the entire app has come from its initial alpha state to what is currently being offered in today's release. Can you believe its already been a year?
+Before we get into the release details I'd like to mention that this month marks the [1 year anniversary](https://youtu.be/tc17q1Zn0Xs?t=3487) of the Home Assistant Companion app being offered in the Google Play Store! Just to think how far along the entire app has come from its initial alpha state to what is currently being offered in today's release. Can you believe it's already been a year?
 
 It has been pretty busy over on the Android side of things during Hacktoberfest! We have seen a total of 84 pull requests from a wide range of contributors that we are thankful for, so thank you for all of your efforts! In case you missed it we actually had a release shortly after version 2.4.0 but as we did not have an accompanying blog post, we'll cover whats new since we last spoke in this post. All of the features listed below are already documented on the [Companion](https://companion.home-assistant.io/) site, please be sure to check in there for greater details. Before we continue with what's new lets go over the breaking changes for this release.
 
@@ -90,7 +90,7 @@ There have been several improvements to notifications as well.
 
 - An event gets sent upon a notification being [cleared](https://companion.home-assistant.io/docs/notifications/notification-cleared) along with all notification data.
 - Notifications can make use of the alarm stream to bypass a device's ringer mode setting. This can be useful if there is an important event such as an alarm being triggered. Make sure to check the updated Android examples on the [companion site](https://companion.home-assistant.io/docs/notifications/critical-notifications).
-- [Text To Speech notifications](https://companion.home-assistant.io/docs/notifications/notifications-basic#text-to-speech-notifications), with the ability to use the alarm stream if desired. By default it will use the device's music stream. There is also an additional option to temporarily change the volume level to the maximum level while speaking, the level would then restored to what it was previously.
+- [Text-to-speech notifications](https://companion.home-assistant.io/docs/notifications/notifications-basic#text-to-speech-notifications), with the ability to use the alarm stream if desired. By default it will use the device's music stream. There is also an additional option to temporarily change the volume level to the maximum level while speaking, the level would then restored to what it was previously.
 - New device [commands](https://companion.home-assistant.io/docs/notifications/notification-commands) to control your phone: broadcasting an intent to another app, controlling Do Not Disturb and ringer mode.
 - Opening another app with an [actionable notification](https://companion.home-assistant.io/docs/notifications/actionable-notifications#building-automations-for-notification-actions), make sure to follow the Android examples.
 
